@@ -1,0 +1,20 @@
+{
+  "name": "react-baron",
+  "version": "0.1.0",
+  "description": "React component for baron scrollbar library",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "react",
+    "baron",
+    "scrollbar",
+    "custom"
+  ],
+  "author": "Diokuz",
+  "license": "ISC",
+  "dependencies": {
+    "baron": "^0.7.14"
+  }
+}
