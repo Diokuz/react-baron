@@ -1,5 +1,3 @@
-It works! But only for vertical scrolling for now.
-
 **React-baron**
 
 react component for baron scrollbar customization support.
