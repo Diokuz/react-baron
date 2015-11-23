@@ -30,7 +30,7 @@ var Baron = React.createClass({
             root: clipper,
             scroller: scroller,
             barOnCls: 'baron',
-            direction: 'v',
+            direction: this.props.direction,
             track: track,
             bar: bar
         });
@@ -72,7 +72,8 @@ Baron.defaultProps = {
     scrollerCls: 'scroller',
     trackCls: 'track',
     barCls: 'bar',
-    barOnCls: 'baron'
+    barOnCls: 'baron',
+    direction: 'v'
 };
 
 module.exports = Baron;
