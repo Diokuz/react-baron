@@ -32,7 +32,8 @@ var Baron = React.createClass({
             barOnCls: 'baron',
             direction: this.props.direction,
             track: track,
-            bar: bar
+            bar: bar,
+            mode: 'scroller'
         });
     },
 
@@ -41,6 +42,14 @@ var Baron = React.createClass({
     },
 
     render: function render() {
+        var barCls = this.props.barCls;
+        var trackCls = this.props.trackCls;
+
+        if (this.props.direction === 'h') {
+            barCls += ' _h';
+            trackCls += ' _h';
+        }
+
         return React.createElement(
             'div',
             { className: this.props.clipperCls, ref: 'clipper' },
@@ -51,8 +60,8 @@ var Baron = React.createClass({
             ),
             React.createElement(
                 'div',
-                { className: this.props.trackCls, ref: 'track' },
-                React.createElement('div', { className: this.props.barCls, ref: 'bar' })
+                { className: trackCls, ref: 'track' },
+                React.createElement('div', { className: barCls, ref: 'bar' })
             )
         );
     }

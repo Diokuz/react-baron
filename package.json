@@ -15,6 +15,6 @@
   "author": "Diokuz",
   "license": "ISC",
   "dependencies": {
-    "baron": "^0.7.15"
+    "baron": "git://github.com/diokuz/baron.git#3f0f6850bc733e4b3ffa9e9187e44582e3e9ef5d"
   }
 }
