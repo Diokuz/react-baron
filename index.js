@@ -33,7 +33,7 @@ var Baron = React.createClass({
             direction: this.props.direction,
             track: track,
             bar: bar,
-            mode: 'scroller'
+            impact: this.props.impact
         });
     },
 
@@ -83,7 +83,8 @@ Baron.defaultProps = {
     barCls: 'bar',
     barOnCls: 'baron',
     direction: 'v',
-    hModifier: '_h'
+    hModifier: '_h',
+    impact: undefined
 };
 
 module.exports = Baron;
