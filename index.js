@@ -41,6 +41,14 @@ var Baron = React.createClass({
         this.baron.update();
     },
 
+    scrollToLast: function() {
+        var scroll = this.props.direction === 'v' ? 'scrollTop' : 'scrollLeft';
+        var size = this.props.direction === 'v' ? 'clientHeight' : 'clientWidth';
+        var node = getDOMNode(this.refs.scroller);
+
+        node[scroll] = node[size];
+    },
+
     render: function render() {
         var barCls = this.props.barCls;
         var trackCls = this.props.trackCls;

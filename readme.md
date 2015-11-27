@@ -52,3 +52,11 @@ render: function() {
 **API**
 
 Same as [baron.js](https://github.com/Diokuz/baron).
+
+Plus
+
+```js
+// Scroll as far as possible
+this.refs.baron.scrollToLast()
+// You must set baron ref for Baron component
+```
