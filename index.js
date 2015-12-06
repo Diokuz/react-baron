@@ -33,7 +33,8 @@ var Baron = React.createClass({
             direction: this.props.direction,
             track: track,
             bar: bar,
-            impact: this.props.impact
+            impact: this.props.impact,
+            cssGuru: this.props.cssGuru
         });
     },
 
@@ -47,6 +48,10 @@ var Baron = React.createClass({
         var node = getDOMNode(this.refs.scroller);
 
         node[scroll] = node[size];
+    },
+
+    componentWillUnmount: function() {
+        this.baron.dispose();
     },
 
     render: function render() {
