@@ -15,6 +15,6 @@
   "author": "Diokuz",
   "license": "ISC",
   "dependencies": {
-    "baron": "^0.8.0"
+    "baron": "^1.0.2"
   }
 }
