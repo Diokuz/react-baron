@@ -50,6 +50,14 @@ var Baron = React.createClass({
         node[scroll] = node[size];
     },
 
+    getScroller: function() {
+        return getDOMNode(this.refs.scroller);
+    },
+
+    getClipper: function() {
+        return getDOMNode(this.refs.clipper);
+    },
+
     componentWillUnmount: function() {
         this.baron.dispose();
     },

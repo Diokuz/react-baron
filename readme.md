@@ -59,4 +59,10 @@ Plus
 // Scroll as far as possible
 this.refs.baron.scrollToLast()
 // You must set baron ref for Baron component
+
+// Get DOM-node scroller
+this.refs.baron.getScroller();
+
+// Get DOM-node clipper
+this.refs.baron.getClipper();
 ```
