@@ -76,7 +76,11 @@ var Baron = React.createClass({
             { className: this.props.clipperCls, ref: 'clipper' },
             React.createElement(
                 'div',
-                { className: this.props.scrollerCls, ref: 'scroller' },
+                {
+                    className: this.props.scrollerCls,
+                    ref: 'scroller',
+                    onScroll: this.props.onScroll
+                },
                 this.props.children
             ),
             React.createElement(
@@ -94,6 +98,7 @@ Baron.propTypes = {
     trackCls: React.PropTypes.string,
     barCls: React.PropTypes.string,
     barOnCls: React.PropTypes.string,
+    onScroll: React.PropTypes.func,
     $: React.PropTypes.object
 };
 

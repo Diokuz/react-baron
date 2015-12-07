@@ -65,4 +65,7 @@ this.refs.baron.getScroller();
 
 // Get DOM-node clipper
 this.refs.baron.getClipper();
+
+// onScroll handler
+onScroll: PropTypes.func;
 ```
