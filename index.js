@@ -4,7 +4,7 @@ var React = require('react');
 var baron = require('baron');
 
 function getDOMNode(ref) {
-    if (ref && ref.getDOMNode) {
+    if (React.version < '0.14.0' && ref && ref.getDOMNode) {
         return ref.getDOMNode();
     }
 
