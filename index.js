@@ -19,14 +19,9 @@ var Baron = React.createClass({
         var scroller = getDOMNode(this.refs.scroller);
         var track = getDOMNode(this.refs.track);
         var bar = getDOMNode(this.refs.bar);
-        var $ = this.props.$;
-
-        if (!$) {
-            $ = require('jquery') || window.jQuery;
-        }
 
         this.baron = baron({
-            $: $,
+            $: this.props.$ || window.jQuery,
             root: clipper,
             scroller: scroller,
             barOnCls: 'baron',
