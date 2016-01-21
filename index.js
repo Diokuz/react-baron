@@ -39,7 +39,7 @@ var Baron = React.createClass({
 
     scrollToLast: function() {
         var scroll = this.props.direction === 'v' ? 'scrollTop' : 'scrollLeft';
-        var size = this.props.direction === 'v' ? 'clientHeight' : 'clientWidth';
+        var size = this.props.direction === 'v' ? 'scrollHeight' : 'scrollWidth';
         var node = getDOMNode(this.refs.scroller);
 
         node[scroll] = node[size];
