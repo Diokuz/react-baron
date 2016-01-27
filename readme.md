@@ -69,3 +69,11 @@ this.refs.baron.getClipper();
 // onScroll handler
 onScroll: PropTypes.func;
 ```
+
+## Browsers support
+
+React-baron is jQuery-free (it has tiny jQuery-like utility, about 400 bytes), and its uses HTMLElement classList.
+
+| <img src="http://diokuz.github.io/pics/chrome.png" width="48px" height="48px" alt="Chrome logo"> | <img src="http://diokuz.github.io/pics/firefox.png" width="48px" height="48px" alt="Firefox logo"> | <img src="http://diokuz.github.io/pics/ie.png" width="48px" height="48px" alt="Internet Explorer logo"> | <img src="http://diokuz.github.io/pics/opera.png" width="48px" height="48px" alt="Opera logo"> | <img src="http://diokuz.github.io/pics/safari.png" width="48px" height="48px" alt="Safari logo"> | <img src="http://diokuz.github.io/pics/android.png" width="48px" height="48px" alt="Android browser logo"> |
+|:---:|:---:|:---:|:---:|:---:|:---:|
+| 8+ ✔ | 3.6+ ✔ | 10+ ✔ | 11.5+ ✔ | 5.1+ ✔ | 4+ ✔ |
