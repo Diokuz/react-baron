@@ -1,6 +1,6 @@
 **React-baron**
 
-react component for baron scrollbar customization support.
+react component for baron scrollbar customization support. Now jQuery-free (you dont have to have jQuery anymore).
 
 ```
 npm i react-baron --save

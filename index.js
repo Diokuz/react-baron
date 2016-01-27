@@ -11,6 +11,58 @@ function getDOMNode(ref) {
     return ref;
 };
 
+function on(eventName, handler) {
+    this[0].addEventListener(eventName, handler);
+}
+
+function off(eventName, handler) {
+    this[0].removeEventListener(eventName, handler);
+}
+
+function addClass(cls) {
+    this[0].classList.add(cls);
+}
+
+function removeClass(cls) {
+    this[0].classList.remove(cls);
+}
+
+function hasClass(cls) {
+    this[0].classList.contains(cls);
+}
+
+function css(obj) {
+    for (var key in obj) {
+        this[0].style[key] = obj[key];
+    }
+}
+
+var jQueryLike = function(selector, context) {
+    var element;
+    var rootElement = document;
+
+    if (context.querySelectorAll) {
+        rootElement = context;
+    }
+
+    if (typeof selector == 'string') {
+        element = rootElement.querySelectorAll(selector);
+    } else {
+        element = selector;
+    }
+
+    return {
+        '0': element,
+        length: 1,
+        on: on,
+        off: off,
+        addClass: addClass,
+        removeClass: removeClass,
+        hasClass: hasClass,
+        css: css
+    };
+};
+
 var Baron = React.createClass({
     displayName: 'baron',
 
@@ -105,7 +157,8 @@ Baron.defaultProps = {
     barOnCls: 'baron',
     direction: 'v',
     hModifier: '_h',
-    impact: undefined
+    impact: undefined,
+    $: jQueryLike
 };
 
 module.exports = Baron;
