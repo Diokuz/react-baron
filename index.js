@@ -28,26 +28,45 @@ function removeClass(cls) {
 }
 
 function hasClass(cls) {
-    this[0].classList.contains(cls);
+    return this[0].classList.contains(cls);
 }
 
-function css(obj) {
-    for (var key in obj) {
-        this[0].style[key] = obj[key];
+function css(key, value) {
+    var obj = key;
+
+    if (typeof key == 'string') {
+        if (value) {
+            this[0].style[key] = value;
+        }
+
+        return this[0].style[key];
+    } else {
+        for (var lkey in obj) {
+            this[0].style[lkey] = obj[lkey];
+        }
     }
+
 }
 
 var jQueryLike = function(selector, context) {
     var element;
     var rootElement = document;
 
-    if (context.querySelectorAll) {
+    if (context && context.querySelectorAll) {
         rootElement = context;
     }
 
     if (typeof selector == 'string') {
         element = rootElement.querySelectorAll(selector);
     } else {
+        if (selector[0]) {
+            // If it already wrapped, dont wrap again
+            element = selector;
+            return element;
+        } else {
+            // But if it HTMLElement, wrap it
+        }
+
         element = selector;
     }
 
@@ -146,7 +165,7 @@ Baron.propTypes = {
     barCls: React.PropTypes.string,
     barOnCls: React.PropTypes.string,
     onScroll: React.PropTypes.func,
-    $: React.PropTypes.object
+    $: React.PropTypes.func
 };
 
 Baron.defaultProps = {
