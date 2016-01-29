@@ -11,12 +11,20 @@ function getDOMNode(ref) {
     return ref;
 };
 
-function on(eventName, handler) {
-    this[0].addEventListener(eventName, handler);
+function on(eventNames, handler) {
+    eventNames = eventNames.split(' ');
+
+    eventNames.forEach(function(eventName) {
+        this[0].addEventListener(eventName, handler);
+    }, this);
 }
 
-function off(eventName, handler) {
-    this[0].removeEventListener(eventName, handler);
+function off(eventNames, handler) {
+    eventNames = eventNames.split(' ');
+
+    eventNames.forEach(function(eventName) {
+        this[0].removeEventListener(eventName, handler);
+    }, this);
 }
 
 function addClass(cls) {
