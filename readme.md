@@ -12,11 +12,15 @@ example:
 Baron = require('react-baron');
 
 ...
+// All params are optional
 render: function() {
     return (
         <Baron
-            clipperCls="block__clipper"
-            scrollerCls="block__scroller">
+            clipperCls="clipper"
+            scrollerCls="scroller"
+            trackCls="track"
+            barCls="bar"
+            barOnCls="baron">
 
             ...Scrollable content here...
         </Baron>
@@ -25,27 +29,48 @@ render: function() {
 ```
 
 ```css
-.block__clipper {
+.clipper {
     overflow: hidden;
     height: 100%;
 }
-.block__scroller {
+.scroller {
     overflow-y: scroll;
     height: 100%;
 }
 
 /* or, for flexbox */
 
-.block__clipper {
+.clipper {
     display: flex;
     overflow: hidden;
     height: 100%;
 }
-.block__scroller {
+.scroller {
     display: flex;
     flex-direction: column;
     overflow-y: scroll;
     flex: 1 1 auto;
+}
+
+/* And scrollbar */
+
+.track {
+    display: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 0;
+}
+.baron > .track {
+    display: block;
+}
+.bar {
+    position: absolute;
+    right: 0;
+    width: 6px;
+    border-radius: 3px;
+    background: #ccc;
 }
 ```
 
