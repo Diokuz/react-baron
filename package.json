@@ -1,6 +1,6 @@
 {
   "name": "react-baron",
-  "version": "0.6.3",
+  "version": "0.6.4",
   "description": "React component for baron scrollbar library",
   "main": "index.js",
   "homepage": "https://github.com/Diokuz/react-baron",
