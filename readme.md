@@ -72,6 +72,11 @@ render: function() {
     border-radius: 3px;
     background: #ccc;
 }
+/* hide default chrome scrollbar */
+.scroller::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+}
 ```
 
 **API**
