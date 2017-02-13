@@ -103,7 +103,7 @@ var Baron = React.createClass({
             $: this.props.$ || window.jQuery,
             root: clipper,
             scroller: scroller,
-            barOnCls: 'baron',
+            barOnCls: this.props.barOnCls,
             direction: this.props.direction,
             track: track,
             bar: bar,
