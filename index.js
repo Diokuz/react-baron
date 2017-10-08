@@ -1,6 +1,8 @@
 'use strict';
 
 var React = require('react');
+var createClass = require('create-react-class');
+var PropTypes = require('prop-types');
 var baron = require('baron');
 
 function getDOMNode(ref) {
@@ -90,7 +92,7 @@ var jQueryLike = function(selector, context) {
     };
 };
 
-var Baron = React.createClass({
+var Baron = createClass({
     displayName: 'baron',
 
     componentDidMount: function() {
@@ -167,13 +169,13 @@ var Baron = React.createClass({
 });
 
 Baron.propTypes = {
-    clipperCls: React.PropTypes.string,
-    scrollerCls: React.PropTypes.string,
-    trackCls: React.PropTypes.string,
-    barCls: React.PropTypes.string,
-    barOnCls: React.PropTypes.string,
-    onScroll: React.PropTypes.func,
-    $: React.PropTypes.func
+    clipperCls: PropTypes.string,
+    scrollerCls: PropTypes.string,
+    trackCls: PropTypes.string,
+    barCls: PropTypes.string,
+    barOnCls: PropTypes.string,
+    onScroll: PropTypes.func,
+    $: PropTypes.func
 };
 
 Baron.defaultProps = {
