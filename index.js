@@ -1,6 +1,8 @@
 'use strict';
 
 var React = require('react');
+var createClass = require('create-react-class');
+var PropTypes = require('prop-types');
 var baron = require('baron');
 
 function getDOMNode(ref) {
@@ -11,86 +13,7 @@ function getDOMNode(ref) {
     return ref;
 };
 
-function on(eventNames, handler) {
-    eventNames = eventNames.split(' ');
-
-    eventNames.forEach(function(eventName) {
-        this[0].addEventListener(eventName, handler);
-    }, this);
-}
-
-function off(eventNames, handler) {
-    eventNames = eventNames.split(' ');
-
-    eventNames.forEach(function(eventName) {
-        this[0].removeEventListener(eventName, handler);
-    }, this);
-}
-
-function addClass(cls) {
-    this[0].classList.add(cls);
-}
-
-function removeClass(cls) {
-    this[0].classList.remove(cls);
-}
-
-function hasClass(cls) {
-    return this[0].classList.contains(cls);
-}
-
-function css(key, value) {
-    var obj = key;
-
-    if (typeof key == 'string') {
-        if (value) {
-            this[0].style[key] = value;
-        }
-
-        return this[0].style[key];
-    } else {
-        for (var lkey in obj) {
-            this[0].style[lkey] = obj[lkey];
-        }
-    }
-
-}
-
-var jQueryLike = function(selector, context) {
-    var element;
-    var rootElement = document;
-
-    if (context && context.querySelectorAll) {
-        rootElement = context;
-    }
-
-    if (typeof selector == 'string') {
-        element = rootElement.querySelectorAll(selector);
-    } else {
-        if (selector[0]) {
-            // If it already wrapped, dont wrap again
-            element = selector;
-            return element;
-        } else {
-            // But if it HTMLElement, wrap it
-        }
-
-        element = selector;
-    }
-
-    return {
-        '0': element,
-        length: 1,
-        on: on,
-        off: off,
-        addClass: addClass,
-        removeClass: removeClass,
-        hasClass: hasClass,
-        css: css
-    };
-};
-
-var Baron = React.createClass({
+var Baron = createClass({
     displayName: 'baron',
 
     componentDidMount: function() {
@@ -100,7 +23,6 @@ var Baron = React.createClass({
         var bar = getDOMNode(this.refs.bar);
 
         this.baron = baron({
-            $: this.props.$ || window.jQuery,
             root: clipper,
             scroller: scroller,
             barOnCls: this.props.barOnCls,
@@ -167,13 +89,12 @@ var Baron = React.createClass({
 });
 
 Baron.propTypes = {
-    clipperCls: React.PropTypes.string,
-    scrollerCls: React.PropTypes.string,
-    trackCls: React.PropTypes.string,
-    barCls: React.PropTypes.string,
-    barOnCls: React.PropTypes.string,
-    onScroll: React.PropTypes.func,
-    $: React.PropTypes.func
+    clipperCls: PropTypes.string,
+    scrollerCls: PropTypes.string,
+    trackCls: PropTypes.string,
+    barCls: PropTypes.string,
+    barOnCls: PropTypes.string,
+    onScroll: PropTypes.func
 };
 
 Baron.defaultProps = {
@@ -184,8 +105,7 @@ Baron.defaultProps = {
     barOnCls: 'baron',
     direction: 'v',
     hModifier: '_h',
-    impact: undefined,
-    $: jQueryLike
+    impact: undefined
 };
 
 module.exports = Baron;
