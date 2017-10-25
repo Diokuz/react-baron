@@ -2,7 +2,6 @@
 
 var React = require('react');
 var createClass = require('create-react-class');
-var PropTypes = require('prop-types');
 var baron = require('baron');
 
 function getDOMNode(ref) {
@@ -14,98 +13,89 @@ function getDOMNode(ref) {
 };
 
 var Baron = createClass({
-    displayName: 'baron',
+  displayName: 'Baron',
 
-    componentDidMount: function() {
-        var clipper = getDOMNode(this.refs.clipper);
-        var scroller = getDOMNode(this.refs.scroller);
-        var track = getDOMNode(this.refs.track);
-        var bar = getDOMNode(this.refs.bar);
+  componentDidMount: function() {
+    var clipper = getDOMNode(this.refs.clipper);
+    var scroller = getDOMNode(this.refs.scroller);
+    var track = getDOMNode(this.refs.track);
+    var bar = getDOMNode(this.refs.bar);
 
-        this.baron = baron({
-            root: clipper,
-            scroller: scroller,
-            barOnCls: this.props.barOnCls,
-            direction: this.props.direction,
-            track: track,
-            bar: bar,
-            impact: this.props.impact,
-            cssGuru: this.props.cssGuru
-        });
-    },
+    this.baron = baron({
+      root: clipper,
+      scroller: scroller,
+      barOnCls: this.props.barOnCls,
+      direction: this.props.direction,
+      track: track,
+      bar: bar,
+      impact: this.props.impact,
+      cssGuru: this.props.cssGuru
+    });
+  },
 
-    componentDidUpdate: function() {
-        this.baron.update();
-    },
+  componentDidUpdate: function() {
+    this.baron.update();
+  },
 
-    scrollToLast: function() {
-        var scroll = this.props.direction === 'v' ? 'scrollTop' : 'scrollLeft';
-        var size = this.props.direction === 'v' ? 'scrollHeight' : 'scrollWidth';
-        var node = getDOMNode(this.refs.scroller);
+  scrollToLast: function() {
+    var scroll = this.props.direction === 'v' ? 'scrollTop' : 'scrollLeft';
+    var size = this.props.direction === 'v' ? 'scrollHeight' : 'scrollWidth';
+    var node = getDOMNode(this.refs.scroller);
 
-        node[scroll] = node[size];
-    },
+    node[scroll] = node[size];
+  },
 
-    getScroller: function() {
-        return getDOMNode(this.refs.scroller);
-    },
+  getScroller: function() {
+    return getDOMNode(this.refs.scroller);
+  },
 
-    getClipper: function() {
-        return getDOMNode(this.refs.clipper);
-    },
+  getClipper: function() {
+    return getDOMNode(this.refs.clipper);
+  },
 
-    componentWillUnmount: function() {
-        this.baron.dispose();
-    },
+  componentWillUnmount: function() {
+    this.baron.dispose();
+  },
 
-    render: function render() {
-        var barCls = this.props.barCls;
-        var trackCls = this.props.trackCls;
+  render: function render() {
+    var barCls = this.props.barCls;
+    var trackCls = this.props.trackCls;
 
-        if (this.props.direction === 'h') {
-            barCls += ' ' + this.props.hModifier;
-            trackCls += ' ' + this.props.hModifier;
-        }
-
-        return React.createElement(
-            'div',
-            { className: this.props.clipperCls, ref: 'clipper' },
-            React.createElement(
-                'div',
-                {
-                    className: this.props.scrollerCls,
-                    ref: 'scroller',
-                    onScroll: this.props.onScroll
-                },
-                this.props.children
-            ),
-            React.createElement(
-                'div',
-                { className: trackCls, ref: 'track' },
-                React.createElement('div', { className: barCls, ref: 'bar' })
-            )
-        );
+    if (this.props.direction === 'h') {
+      barCls += ' ' + this.props.hModifier;
+      trackCls += ' ' + this.props.hModifier;
     }
+
+    return React.createElement(
+      'div',
+      { className: this.props.clipperCls, ref: 'clipper' },
+      React.createElement(
+        'div',
+        {
+          className: this.props.scrollerCls,
+          ref: 'scroller',
+          onScroll: this.props.onScroll
+        },
+        this.props.children
+      ),
+      React.createElement(
+        'div',
+        { className: trackCls, ref: 'track' },
+        React.createElement('div', { className: barCls, ref: 'bar' })
+      )
+    );
+  }
 });
 
-Baron.propTypes = {
-    clipperCls: PropTypes.string,
-    scrollerCls: PropTypes.string,
-    trackCls: PropTypes.string,
-    barCls: PropTypes.string,
-    barOnCls: PropTypes.string,
-    onScroll: PropTypes.func
-};
-
 Baron.defaultProps = {
-    clipperCls: 'clipper',
-    scrollerCls: 'scroller',
-    trackCls: 'track',
-    barCls: 'bar',
-    barOnCls: 'baron',
-    direction: 'v',
-    hModifier: '_h',
-    impact: undefined
+  clipperCls: 'clipper',
+  scrollerCls: 'scroller',
+  trackCls: 'track',
+  barCls: 'bar',
+  barOnCls: 'baron',
+  direction: 'v',
+  hModifier: '_h',
+  impact: undefined
 };
 
 module.exports = Baron;
