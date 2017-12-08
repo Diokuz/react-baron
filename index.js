@@ -26,6 +26,8 @@ var Baron = createClass({
       scroller: scroller,
       barOnCls: this.props.barOnCls,
       direction: this.props.direction,
+      scrollingCls: this.props.scrollingCls,
+      draggingCls: this.props.draggingCls,
       track: track,
       bar: bar,
       impact: this.props.impact,
@@ -93,6 +95,8 @@ Baron.defaultProps = {
   trackCls: 'track',
   barCls: 'bar',
   barOnCls: 'baron',
+  scrollingCls: undefined,
+  draggingCls: undefined,
   direction: 'v',
   hModifier: '_h',
   impact: undefined
