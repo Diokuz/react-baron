@@ -1,12 +1,12 @@
-**React-baron**
+# React-baron
+
+React component for [baron](https://github.com/Diokuz/baron) scrollbar customization support.
 
 ## 2.0 breaking changes
 
-All baron specified parameters now passed to `baron` _as is_ with `this.props.params` (see example below).
+All baron specified parameters now passed to `baron` _as is_ with `props.params` (see API below).
 
 ## How to use
-
-React component for baron scrollbar customization support.
 
 ```
 npm i react-baron --save
@@ -15,7 +15,8 @@ npm i react-baron --save
 ### Example
 
 ```js
-Baron = require('react-baron');
+import Baron from 'react-baron'
+// or Baron = require('react-baron')
 
 ...
 <Baron>
@@ -23,6 +24,7 @@ Baron = require('react-baron');
 </Baron>
 ```
 
+Dont forget to add some css!
 ```css
 .clipper {
   overflow: hidden;
@@ -74,9 +76,9 @@ Baron = require('react-baron');
 }
 ```
 
-**API**
+## API
 
-<Baron> props are all optional. You can see default props next to `=`:
+All <Baron> props are optional. You can see default props next to `=`:
 
 ```js
 props.params = {defaultParams} // Object that will be passed to baron as `params` (see baron API https://github.com/Diokuz/baron)
@@ -95,9 +97,13 @@ defaultParams = {
 Plus, from within your component you have the following methods:
 
 ```js
+// Define ref
+<Baron ref={(r) => this.baronRef = r}>
+
+// Then you have some ReactBaron methods
+
 // Scroll as far as possible
 this.baronRef.scrollToLast()
-// You have to set baronRef for Baron component before
 
 // Get DOM-node scroller
 this.baronRef.getScroller();
