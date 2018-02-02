@@ -4,55 +4,42 @@ var React = require('react');
 var createClass = require('create-react-class');
 var baron = require('baron');
 
-function getDOMNode(ref) {
-    if (React.version < '0.14.0' && ref && ref.getDOMNode) {
-        return ref.getDOMNode();
-    }
-
-    return ref;
+var defaultBaronParams = {
+  barOnCls: 'baron',
+  direction: 'v'
 };
 
 var Baron = createClass({
   displayName: 'Baron',
 
-  componentDidMount: function() {
-    var clipper = getDOMNode(this.refs.clipper);
-    var scroller = getDOMNode(this.refs.scroller);
-    var track = getDOMNode(this.refs.track);
-    var bar = getDOMNode(this.refs.bar);
+  baronParams: {},
 
-    this.baron = baron({
-      root: clipper,
-      scroller: scroller,
-      barOnCls: this.props.barOnCls,
-      direction: this.props.direction,
-      scrollingCls: this.props.scrollingCls,
-      draggingCls: this.props.draggingCls,
-      track: track,
-      bar: bar,
-      impact: this.props.impact,
-      cssGuru: this.props.cssGuru
-    });
+  componentDidMount: function() {
+    this.baronParams = {
+      root: this.clipper,
+      scroller: this.scroller,
+      track: this.track,
+      bar: this.bar
+    };
+
+    for (var key in this.props.params) {
+      // You cant pass dom nodes params, defined above as refs
+      if (!this.baronParams[key]) {
+        this.baronParams[key] = this.props.params[key]
+      }
+    }
+
+    for (var key2 in defaultBaronParams) {
+      if (!this.baronParams.hasOwnProperty(key2)) {
+        this.baronParams[key2] = defaultBaronParams[key]
+      }
+    }
+
+    this.baron = baron(this.baronParams);
   },
 
   componentDidUpdate: function() {
     this.baron.update();
-  },
-
-  scrollToLast: function() {
-    var scroll = this.props.direction === 'v' ? 'scrollTop' : 'scrollLeft';
-    var size = this.props.direction === 'v' ? 'scrollHeight' : 'scrollWidth';
-    var node = getDOMNode(this.refs.scroller);
-
-    node[scroll] = node[size];
-  },
-
-  getScroller: function() {
-    return getDOMNode(this.refs.scroller);
-  },
-
-  getClipper: function() {
-    return getDOMNode(this.refs.clipper);
   },
 
   componentWillUnmount: function() {
@@ -62,30 +49,65 @@ var Baron = createClass({
   render: function render() {
     var barCls = this.props.barCls;
     var trackCls = this.props.trackCls;
+    var that = this
 
-    if (this.props.direction === 'h') {
+    if (this.props.params && this.props.params.direction === 'h') {
       barCls += ' ' + this.props.hModifier;
       trackCls += ' ' + this.props.hModifier;
     }
 
     return React.createElement(
       'div',
-      { className: this.props.clipperCls, ref: 'clipper' },
+      {
+        className: this.props.clipperCls,
+        ref: function(r) {
+          that.clipper = r;
+        }
+      },
       React.createElement(
         'div',
         {
           className: this.props.scrollerCls,
-          ref: 'scroller',
+          ref: function(r) {
+            that.scroller = r;
+          },
           onScroll: this.props.onScroll
         },
         this.props.children
       ),
       React.createElement(
         'div',
-        { className: trackCls, ref: 'track' },
-        React.createElement('div', { className: barCls, ref: 'bar' })
+        {
+          className: trackCls,
+          ref: function(r) {
+            that.track = r;
+          }
+        },
+        React.createElement('div', {
+          className: barCls,
+          ref: function(r) {
+            that.bar = r;
+          }
+        })
       )
     );
+  },
+
+  // External API
+
+  scrollToLast: function() {
+    var scroll = this.baronParams.direction === 'v' ? 'scrollTop' : 'scrollLeft';
+    var size = this.baronParams.direction === 'v' ? 'scrollHeight' : 'scrollWidth';
+
+    this.scroller[scroll] = this.scroller[size];
+  },
+
+  getScroller: function() {
+    return this.scroller;
+  },
+
+  getClipper: function() {
+    return this.clipper;
   }
 });
 
@@ -94,12 +116,7 @@ Baron.defaultProps = {
   scrollerCls: 'scroller',
   trackCls: 'track',
   barCls: 'bar',
-  barOnCls: 'baron',
-  scrollingCls: undefined,
-  draggingCls: undefined,
-  direction: 'v',
-  hModifier: '_h',
-  impact: undefined
+  hModifier: '_h'
 };
 
 module.exports = Baron;

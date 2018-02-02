@@ -1,100 +1,109 @@
 **React-baron**
 
-react component for baron scrollbar customization support. Now jQuery-free (you dont have to have jQuery anymore).
+## 2.0 breaking changes
+
+All baron specified parameters now passed to `baron` _as is_ with `this.props.params` (see example below).
+
+## How to use
+
+React component for baron scrollbar customization support.
 
 ```
 npm i react-baron --save
 ```
 
-example:
+### Example
 
 ```js
 Baron = require('react-baron');
 
 ...
-// All params are optional
-render: function() {
-    return (
-        <Baron
-            clipperCls="clipper"
-            scrollerCls="scroller"
-            trackCls="track"
-            barCls="bar"
-            barOnCls="baron">
-
-            ...Scrollable content here...
-        </Baron>
-    );
-}
+<Baron>
+  ...Scrollable content here...
+</Baron>
 ```
 
 ```css
 .clipper {
-    overflow: hidden;
-    height: 100%;
+  overflow: hidden;
+  height: 100%;
 }
 .scroller {
-    overflow-y: scroll;
-    height: 100%;
+  overflow-y: scroll;
+  height: 100%;
 }
 
 /* or, for flexbox */
 
 .clipper {
-    display: flex;
-    overflow: hidden;
-    height: 100%;
+  display: flex;
+  overflow: hidden;
+  height: 100%;
 }
 .scroller {
-    display: flex;
-    flex-direction: column;
-    overflow-y: scroll;
-    flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+  flex: 1 1 auto;
 }
 
 /* And scrollbar */
 
 .track {
-    display: none;
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    width: 0;
+  display: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 0;
 }
 .baron > .track {
-    display: block;
+  display: block;
 }
 .bar {
-    position: absolute;
-    right: 0;
-    width: 6px;
-    border-radius: 3px;
-    background: #ccc;
+  position: absolute;
+  right: 0;
+  width: 6px;
+  border-radius: 3px;
+  background: #ccc;
 }
 /* hide default chrome scrollbar */
 .scroller::-webkit-scrollbar {
-    width: 0;
-    height: 0;
+  width: 0;
+  height: 0;
 }
 ```
 
 **API**
 
-Same as [baron.js](https://github.com/Diokuz/baron).
+<Baron> props are all optional. You can see default props next to `=`:
 
-Plus
+```js
+props.params = {defaultParams} // Object that will be passed to baron as `params` (see baron API https://github.com/Diokuz/baron)
+props.clipperCls = "clipper"   // className for clipper/root dom node
+props.scrollerCls = "scroller" // className for scroller dom node
+props.trackCls = "track"       // className for track dom node
+props.barCls = "bar"           // className for bar dom node
+
+// Note, that defaultParams is not actually a default prop, it is a defaults for `props.params` object.
+defaultParams = {
+  barOnCls: 'baron',
+  direction: 'v'
+}
+```
+
+Plus, from within your component you have the following methods:
 
 ```js
 // Scroll as far as possible
-this.refs.baron.scrollToLast()
-// You must set baron ref for Baron component
+this.baronRef.scrollToLast()
+// You have to set baronRef for Baron component before
 
 // Get DOM-node scroller
-this.refs.baron.getScroller();
+this.baronRef.getScroller();
 
 // Get DOM-node clipper
-this.refs.baron.getClipper();
+this.baronRef.getClipper();
 
 // onScroll handler
 onScroll: PropTypes.func;
