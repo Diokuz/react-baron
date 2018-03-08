@@ -1,20 +1,18 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
-var createReactClass = require('create-react-class');
-var Baron = require('../../index.js');
+import React, { Component } from 'react'
+import Baron from '../../src/component'
 
-var i = 0;
+var i = 0
 
-module.exports = createReactClass({
-  componentDidMount: function() {
+export default class Case1 extends Component {
+  componentDidMount() {
     setInterval(() => {
-      i++;
-      this.forceUpdate();
-    }, 3000);
-  },
+      i++
+      this.forceUpdate()
+    }, 3000)
+  }
 
-  render: function() {
-    let title = 'title';
+  render() {
+    let title = 'title'
 
     if (i % 2 === 0) {
       title = (
@@ -33,6 +31,6 @@ module.exports = createReactClass({
           The title was quite common in most European countries often in a slightly modified form. In Italian, the word used was Barone. The corresponding title in the Holy Roman Empire was Freiherr.
         </div>
       </Baron>
-    );
+    )
   }
-});
+}

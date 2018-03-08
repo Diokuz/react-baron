@@ -1,0 +1,30 @@
+.clipper {
+  width: 100%;
+  height: 100%;
+  background-color: #fcc;
+  position: relative;
+}
+
+.scroller {
+  overflow-y: auto;
+  max-height: 100%;
+}
+
+.scroller::-webkit-scrollbar { /* for Mac OS X support */
+  width: 0;
+}
+
+.track {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  background-color: #ffc;
+  width: 10px;
+}
+
+.bar {
+  position: absolute;
+  width: 100%;
+  background-color: green;
+}

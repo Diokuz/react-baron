@@ -1,8 +1,8 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
-var CaseOne = require('./case1');
+import React from 'react'
+import ReactDOM from 'react-dom'
+import CaseOne from './case1'
 
 ReactDOM.render(
   <CaseOne />,
   document.getElementById('root')
-);
+)
