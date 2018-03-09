@@ -9,6 +9,7 @@ const defaultBaronParams = {
   direction: 'v'
 }
 
+// $FlowFixMe
 export default class Baron extends Component {
   static defaultProps = {
     clipperCls: s.clipper,
@@ -17,6 +18,12 @@ export default class Baron extends Component {
     barCls: s.bar,
     hModifier: s._h
   }
+
+  scroller = null
+  clipper = null
+  track = null
+  bar = null
+  baron = null
 
   baronParams = {}
 
@@ -45,11 +52,15 @@ export default class Baron extends Component {
   }
 
   componentDidUpdate() {
-    this.baron.update()
+    if (this.baron) {
+      this.baron.update()
+    }
   }
 
   componentWillUnmount() {
-    this.baron.dispose()
+    if (this.baron) {
+      this.baron.dispose()
+    }
   }
 
   render() {
@@ -78,7 +89,11 @@ export default class Baron extends Component {
     const scroll = this.baronParams.direction === 'v' ? 'scrollTop' : 'scrollLeft'
     const size = this.baronParams.direction === 'v' ? 'scrollHeight' : 'scrollWidth'
 
-    this.scroller[scroll] = this.scroller[size]
+    if (this.scroller instanceof HTMLElement) {
+      // > Cannot get this.scroller[size] because an indexer property is missing in HTMLDivElement
+      // $FlowFixMe
+      this.scroller[scroll] = this.scroller[size]
+    }
   }
 
   getScroller() {

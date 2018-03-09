@@ -1,7 +1,9 @@
-import React, { Component } from 'react'
-import Baron from '../../src/component'
+// @flow
 
-export default class Case2 extends Component {
+import React, { Component } from 'react'
+import Baron from 'react-baron'
+
+export default class Case2 extends Component<{}> {
   render() {
     return (
       <Baron params={{ direction: 'h' }}>

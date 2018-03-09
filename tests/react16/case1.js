@@ -1,9 +1,11 @@
+// @flow
+
 import React, { Component } from 'react'
-import Baron from '../../src/component'
+import Baron from 'react-baron'
 
 var i = 0
 
-export default class Case1 extends Component {
+export default class Case1 extends Component<{}> {
   componentDidMount() {
     setInterval(() => {
       i++

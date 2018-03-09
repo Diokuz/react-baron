@@ -2,17 +2,17 @@
 
 1. Native scroll mechanic
 2. No extra css (css-modules) by default
-2. Flexible configuration:
-2.1. vertical, horizontal and bidirectional scroll;
-2.2. nested scrollers;
-2.3. flexbox;
-2.4. different width/height modes.
-3. Full css customization: no inline styles, change css and/or classNames as you want
-4. Auto show/hide/resize/update
-4. Isomorphic (server side rendering support out of the box)
-5. Wide range of browsers support (ie10+, Safari5+, Android4+, Opera11+)
-6. 100% code coverage
-6. 5.87 kB (gzip)
+3. Flexible configuration:
+    1. vertical, horizontal and bidirectional scroll;
+    2. nested scrollers;
+    3. flexbox;
+    4. different width/height modes.
+4. Full css customization: no inline styles, change css and/or classNames as you want
+5. Auto show/hide/resize/update
+6. Isomorphic (server side rendering support out of the box)
+7. Wide range of browsers support (ie10+, Safari5+, Android4+, Opera11+)
+8. 100% code coverage
+9. 5.9 kB (gzip)
 
 [Baron demo](http://diokuz.github.io/baron/)
 
@@ -34,9 +34,9 @@ import Baron from 'react-baron'
 </Baron>
 ```
 
-Note: you need configured `babel-loader` and `css-modules` in your application.
+Note: you need configured loaders: `babel-loader` and `css-modules` in your application.
 
-If you have any problems, follow manual way:
+If you have any problems this way, follow manual way:
 
 ### Manual way
 
@@ -52,7 +52,7 @@ import Baron from 'react-baron/dist/es5'
 </Baron>
 ```
 
-2. Add css from `react-baron/src/styles.css`:
+2. Add css from `react-baron/src/styles.css` (via [postcss-global-import](https://www.npmjs.com/package/postcss-global-import) or something else):
 
 ```css
 .clipper {

@@ -1,7 +1,9 @@
-import React, { Component } from 'react'
-import Baron from '../../dist/es5'
+// @flow
 
-export default class Case3 extends Component {
+import React, { Component } from 'react'
+import Baron from 'react-baron/dist/es5'
+
+export default class Case3 extends Component<{}> {
   render() {
     return (
       <Baron>

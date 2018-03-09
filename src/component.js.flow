@@ -1,0 +1,21 @@
+import type { Node, ComponentType } from 'react'
+
+type Params = {
+  barOnCls?: string;
+  direction?: 'v' | 'h';
+  position?: 'static' | 'absolute';
+  cssGuru?: boolean;
+  impact?: 'scroller' | 'clipper';
+  rtl?: boolean;
+};
+
+type Props = {
+  clipperCls: string;
+  scrollerCls: string;
+  trackCls: string;
+  barCls: string;
+  hModifier: string;
+  params?: Params;
+};
+
+declare export default ComponentType<Props>;
