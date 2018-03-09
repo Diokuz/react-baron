@@ -1,10 +1,20 @@
 # React-baron
 
-React component for [baron](https://github.com/Diokuz/baron) scrollbar customization support.
+1. Native scroll mechanic
+2. No extra css (css-modules) by default
+2. Flexible configuration:
+2.1. vertical, horizontal and bidirectional scroll;
+2.2. nested scrollers;
+2.3. flexbox;
+2.4. different width/height modes.
+3. Full css customization: no inline styles, change css and/or classNames as you want
+4. Auto show/hide/resize/update
+4. Isomorphic (server side rendering support out of the box)
+5. Wide range of browsers support (ie10+, Safari5+, Android4+, Opera11+)
+6. 100% code coverage
+6. 5.87 kB (gzip)
 
-## 2.0 breaking changes
-
-All baron specified parameters now passed to `baron` _as is_ with `props.params` (see API below).
+[Baron demo](http://diokuz.github.io/baron/)
 
 ## How to use
 
@@ -12,7 +22,7 @@ All baron specified parameters now passed to `baron` _as is_ with `props.params`
 npm i react-baron --save
 ```
 
-### Example
+### Default way
 
 ```js
 import Baron from 'react-baron'
@@ -24,40 +34,54 @@ import Baron from 'react-baron'
 </Baron>
 ```
 
-Dont forget to add some css!
+Note: you need configured `babel-loader` and `css-modules` in your application.
+
+If you have any problems, follow manual way:
+
+### Manual way
+
+1. Import from custom path:
+
+```js
+import Baron from 'react-baron/dist/es5'
+// or Baron = require('react-baron/dist/es5')
+
+...
+<Baron>
+  ...Scrollable content here...
+</Baron>
+```
+
+2. Add css from `react-baron/src/styles.css`:
+
 ```css
 .clipper {
+  position: relative;
   overflow: hidden;
   height: 100%;
 }
 .scroller {
-  overflow-y: scroll;
+  overflow: auto;
   height: 100%;
 }
-
-/* or, for flexbox */
-
-.clipper {
-  display: flex;
-  overflow: hidden;
-  height: 100%;
+.scroller::-webkit-scrollbar {
+  width: 0;
+  height: 0;
 }
-.scroller {
-  display: flex;
-  flex-direction: column;
-  overflow-y: scroll;
-  flex: 1 1 auto;
-}
-
-/* And scrollbar */
 
 .track {
   display: none;
   position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
+  top: 2px;
+  right: 2px;
+  bottom: 2px;
   width: 0;
+}
+.track._h {
+  top: auto;
+  width: auto;
+  height: 0;
+  left: 2px;
 }
 .baron > .track {
   display: block;
@@ -69,12 +93,15 @@ Dont forget to add some css!
   border-radius: 3px;
   background: #ccc;
 }
-/* hide default chrome scrollbar */
-.scroller::-webkit-scrollbar {
-  width: 0;
-  height: 0;
+.bar._h {
+  bottom: 0;
+  right: auto;
+  width: auto;
+  height: 6px;
 }
 ```
+
+Note: you can change any classNames: just pass them as props to Baron (see below).
 
 ## API
 
@@ -117,4 +144,10 @@ onScroll: PropTypes.func;
 
 ## Browsers support
 
-Same as [baron.js](https://github.com/Diokuz/baron).
+| <img src="http://diokuz.github.io/pics/chrome.png" width="48px" height="48px" alt="Chrome logo"> | <img src="http://diokuz.github.io/pics/firefox.png" width="48px" height="48px" alt="Firefox logo"> | <img src="http://diokuz.github.io/pics/ie.png" width="48px" height="48px" alt="Internet Explorer logo"> | <img src="http://diokuz.github.io/pics/opera.png" width="48px" height="48px" alt="Opera logo"> | <img src="http://diokuz.github.io/pics/safari.png" width="48px" height="48px" alt="Safari logo"> | <img src="http://diokuz.github.io/pics/android.png" width="48px" height="48px" alt="Android browser logo"> |
+|:---:|:---:|:---:|:---:|:---:|:---:|
+| 8+ ✔ | 3.6+ ✔ | 10+ ✔ | 11.5+ ✔ | 5.1+ ✔ | 4+ ✔ |
+
+## Alternatives
+
+[react-custom-scrollbars](https://github.com/malte-wessel/react-custom-scrollbars)

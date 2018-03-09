@@ -45,7 +45,9 @@
     "flow-bin": "^0.67.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
+    "string-replace-loader": "^2.1.1",
     "webpack": "^4.1.1",
-    "webpack-bundle-analyzer": "^2.11.1"
+    "webpack-bundle-analyzer": "^2.11.1",
+    "webpack-cli": "^2.0.10"
   }
 }

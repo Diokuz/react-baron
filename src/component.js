@@ -4,8 +4,6 @@ import React, { Component } from 'react'
 import baron from 'baron'
 import s from './styles.css'
 
-console.log('s', s);
-
 const defaultBaronParams = {
   barOnCls: s.baron,
   direction: 'v'
@@ -30,16 +28,16 @@ export default class Baron extends Component {
       bar: this.bar
     }
 
-    for (var key in this.props.params) {
+    for (let key in this.props.params) {
       // You cant pass dom nodes params (because they are dynamic react refs)
       if (!this.baronParams[key]) {
         this.baronParams[key] = this.props.params[key]
       }
     }
 
-    for (var key2 in defaultBaronParams) {
-      if (!this.baronParams.hasOwnProperty(key2)) {
-        this.baronParams[key2] = defaultBaronParams[key]
+    for (let key in defaultBaronParams) {
+      if (!this.baronParams.hasOwnProperty(key)) {
+        this.baronParams[key] = defaultBaronParams[key]
       }
     }
 
@@ -66,9 +64,9 @@ export default class Baron extends Component {
       <div className={clipperCls} ref={r => this.clipper = r}>
         <div className={scrollerCls} ref={r => this.scroller = r}>
           {children}
-          <div className={trackCls} ref={r => this.track = r}>
-            <div className={barCls} ref={r => this.bar = r} />
-          </div>
+        </div>
+        <div className={trackCls} ref={r => this.track = r}>
+          <div className={barCls} ref={r => this.bar = r} />
         </div>
       </div>
     )
