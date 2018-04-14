@@ -151,3 +151,13 @@ onScroll: PropTypes.func;
 ## Alternatives
 
 [react-custom-scrollbars](https://github.com/malte-wessel/react-custom-scrollbars)
+
+## Troubleshooting
+
+Wellcome to create an [issue](https://github.com/Diokuz/react-baron/issues/new)! Before that, exec this js script in your browser console (at the moment, when problem arises):
+
+```js
+!function(){console.group("Baron diagnosis");var o=document.querySelectorAll("[data-baron-v-id]");console.log("Total barons found: ",o.length),o.forEach(function(o,t){var e=o.children[0];console.group("Baron root "+t),console.log("Root: ",o),console.log("Maybe scroller: ",e),console.log("Root data: ",{scrollHeight:o.scrollHeight,offsetHeight:o.offsetHeight,overflow:o.style.overflow,clientWidth:o.clientWidth,offsetWidth:o.offsetWidth}),console.log("Scroller data: ",{scrollHeight:e.scrollHeight,offsetHeight:e.offsetHeight,clientWidth:e.clientWidth,offsetWidth:e.offsetWidth}),console.groupEnd()})}();
+```
+
+and copypaste output to your issue.

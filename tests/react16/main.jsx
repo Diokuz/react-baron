@@ -28,3 +28,29 @@ if (root) {
     root
   )
 }
+
+(function() {
+console.group('Baron diagnosis')
+var baronRoots = document.querySelectorAll('[data-baron-v-id]')
+console.log('Total barons found: ', baronRoots.length)
+baronRoots.forEach(function(el, i) {
+  var scroller = el.children[0]
+  console.group('Baron root ' + i)
+  console.log('Root: ', el)
+  console.log('Maybe scroller: ', scroller);
+  console.log('Root data: ', {
+    scrollHeight: el.scrollHeight,
+    offsetHeight: el.offsetHeight,
+    overflow: el.style.overflow,
+    clientWidth: el.clientWidth,
+    offsetWidth: el.offsetWidth,
+  })
+  console.log('Scroller data: ', {
+    scrollHeight: scroller.scrollHeight,
+    offsetHeight: scroller.offsetHeight,
+    clientWidth: scroller.clientWidth,
+    offsetWidth: scroller.offsetWidth,
+  })
+  console.groupEnd()
+})
+})()
