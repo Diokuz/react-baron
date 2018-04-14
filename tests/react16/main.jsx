@@ -5,6 +5,7 @@ import ReactDOM from 'react-dom'
 import CaseOne from './case1'
 import CaseTwo from './case2'
 import Case3 from './case3'
+import Case4 from './case4'
 
 const root = document.getElementById('root')
 
@@ -19,6 +20,9 @@ if (root) {
       </div>
       <div className='testcase'>
         <Case3 />
+      </div>
+      <div className='testcase'>
+        <Case4 />
       </div>
     </Fragment>,
     root
