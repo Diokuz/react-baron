@@ -24,7 +24,7 @@ module.exports = {
             loader: 'string-replace-loader',
             options: {
               search: 'import s from \'./styles.css\'',
-              replace: `const s = ${JSON.stringify(defaultClassNames)}`,
+              replace: `var s = ${JSON.stringify(defaultClassNames)}`,
             },
           },
           {
